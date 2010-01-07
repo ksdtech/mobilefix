@@ -1,6 +1,5 @@
 mobilefix - A PackageMaker install script to fix 10.4 mobile account bugs.
 
-
 What the problem is
 -------------------
 At our school district, we have lots of iBook G4 machines running OS X 
@@ -42,6 +41,17 @@ The second file is a launch daemon that runs the acctcheck.py
 script on start up.  It is installed to /Library/LaunchDaemons and is
 named org.kentfieldschools.mobilefix.plist.
 
+Description of this repository
+------------------------------
+The "mobilefix.pmdoc" directory is a PackageMaker "document", for use with
+Apple's PackageMaker utility.  I built the project with PackageMaker v3.0.3.
+You may have to change things to get them to work on your system.
+
+The "root" directory contains the files that PackageMaker installs on target
+computers.  You can install these files manually if you prefer.
+
+Intellectual Property Information
+---------------------------------
 This software is free for your use.  
 Copyright 2009 Kentfield School District.
 Original author: Peter Zingg, pzingg@kentfieldschools.org
