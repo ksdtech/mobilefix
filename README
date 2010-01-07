@@ -1,0 +1,45 @@
+What the problem is
+-------------------
+
+At our school district, we have lots of iBook G4 machines running OS X 
+10.4.  We use Workgroup Manager to manage mobile users and workgroups
+on these laptops. At some point in the 10.4 or 10.5 server upgrade
+releases, Apple introduced a bug that intermittently causes multiple
+mobile accounts with the same username to be created in NetInfo on 
+these machines during the normal login process.
+
+I have watched the NetInfo progress via ssh on a machine when a mobile
+user logs in.  Apparently, the login process makes copies of the accounts
+(from the server) to the client, then deletes some of the accounts.  Each
+mobile user record in NetInfo has a "copy_timestamp" attribute that can
+reveal a little about this process.
+
+If the login process goes awry (from timing or network connectivity problems?)
+the result is multiple mobile account records on the client machine.  Once
+this occurs, a number of problems result for the end user:
+
+1. He may be able to log in, but instead of seeing his mobile Destkop,
+he will see a home icon displayed for the Macintosh HD on the Desktop, and
+will not have access to his files.  This is because the NetInfo record
+used for the login has been corrupted.  It has no "home" attribute.
+
+Or
+
+2. He may get "shaken off" and not be able to log in at all.
+
+What the installer does
+-----------------------
+The installer copies two files to the target machine (which must be running
+OS X 10.4 or earlier--NetInfo as such does not exist in 10.5 and later).
+
+The first file is a python script, "acctcheck.py" which is installed to 
+/Users/Shared.  The python script uses the "nicl" command line interface
+to NetInfo to detect and clean up the multiple mobile account problems.
+
+The second file is a launch daemon that runs the acctcheck.py 
+script on start up.  It is installed to /Library/LaunchDaemons and is
+named org.kentfieldschools.mobilefix.plist.
+
+This software is free for your use.  
+Copyright 2009 Kentfield School District.
+Original author: Peter Zingg, pzingg@kentfieldschools.org
