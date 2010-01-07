@@ -1,6 +1,8 @@
+mobilefix - A PackageMaker install script to fix 10.4 mobile account bugs.
+
+
 What the problem is
 -------------------
-
 At our school district, we have lots of iBook G4 machines running OS X 
 10.4.  We use Workgroup Manager to manage mobile users and workgroups
 on these laptops. At some point in the 10.4 or 10.5 server upgrade
